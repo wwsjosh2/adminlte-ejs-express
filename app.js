@@ -3,11 +3,19 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var request = require("request");
+var noblox = require("noblox.js");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
+app.locals.noblox = noblox;
+// app.locals.testFunction = function() {
+//   await noblox.getUniverseInfo([ 2152417643 ]).then(function(result) {
+//     return result;
+//   });
+// }
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
