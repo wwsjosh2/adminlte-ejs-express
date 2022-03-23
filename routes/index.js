@@ -30,9 +30,17 @@ async function getUserInfo(userId) {
   return {username};
 }
 
+async function getUserId(username) {
+  if(isNaN(username)) {
+    return await noblox.getIdFromUsername(username);
+  } else {
+    return username;
+  }
+}
+
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Express" });
+  res.render("login");
 });
 
 router.get("/login", function(req, res, next) {
@@ -53,6 +61,20 @@ router.get("/users/:userId", function(req, res, next) {
   } else {
     res.send("ERROR: No user id specified in URL");
   }
-})
+});
+
+router.get("/search", function(req, res, next) {
+  res.render("search");
+});
+
+router.post("/handle-search", (req, res) => {
+  const username = req.body.username;
+
+  if (username) {
+    getUserId(username).then((id) => {
+      res.redirect("/users/" + id);
+    })
+  }
+});
 
 module.exports = router;
