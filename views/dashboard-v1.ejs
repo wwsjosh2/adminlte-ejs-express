@@ -25,34 +25,18 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3><%= ob %></h3>
-      
-                  <p>Overlook RP Players</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3><%= traitor %></h3>
-      
-                  <p>TRAITOR! Players</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3><%= timmeh %></h3>
-      
-                  <p>TIMMEH! Players</p>
-                </div>
+            <div class="col-lg-4 col-lg-4">
+              
+              <div class="nav-tabs-custom">
+                
+              <ul class="nav nav-tabs pull-right">
+                <li class="pull-left header"><i class="fa fa-users"></i> Active Players: <%= total %></li>
+              </ul>
+              <div class="tab-content no-padding">
+                <div
+                  class="chart tab-pane active"
+                  id="playercount"
+                  style="position: relative; height: 300px;"></div>
               </div>
             </div>
           </div>
@@ -66,3 +50,16 @@
     <%- include layout/js.ejs %>
   </body>
 </html>
+
+<script>
+  new Morris.Donut({
+    element: 'playercount',
+
+    data: [
+      { label: 'Overlook RP', value: <%= ob %> },
+      { label: 'Meta Mall', value: <%= metamall %> },
+      { label: 'TRAITOR!', value: <%= traitor %> },
+      { label: 'TIMMEH!', value: <%= timmeh %> },
+    ],
+  });
+</script>
